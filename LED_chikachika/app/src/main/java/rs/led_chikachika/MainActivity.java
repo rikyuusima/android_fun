@@ -1,12 +1,6 @@
 package rs.led_chikachika;
 
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
-import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -24,13 +18,13 @@ public class MainActivity extends AppCompatActivity {
         View.OnClickListener btn1 = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
-                builder.setSmallIcon(R.drawable.ic_stat_name);
-                builder.setContentTitle("LEDが点灯中です");
-                builder.setContentText("左右にフリックして終了します");
-                builder.setNumber(1);
                 EditText et = (EditText)findViewById(R.id.editText1);
                 int milsec = Integer.parseInt(et.getText().toString());
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
+                builder.setSmallIcon(R.drawable.ic_stat_name);
+                builder.setContentTitle("LED通知が" + milsec * 0.001 + "で点灯中です");
+                builder.setContentText("左右にフリックして終了します");
+                builder.setNumber(1);
                 builder.setLights(Color.WHITE,milsec,milsec);
 
                 NotificationManagerCompat nm = NotificationManagerCompat.from(getApplicationContext());
